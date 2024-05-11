@@ -2,6 +2,7 @@
 title: Untitled
 author: First Last
 date: last-modified
+date-format: long
 anonymized: false # Change this to true if you need to blind it for review
 abstract: "Here's where you'd put your abstract" # optional
 wordcount: "{{wordcountref}}" # or you can calculate it manually, or eliminate
@@ -24,6 +25,10 @@ This [Quarto](https://quarto.org/) [template](https://quarto.org/docs/extensions
 - Optionally has double-spaced footnotes (as required by, e.g. [The Journal of Politics](https://www.journals.uchicago.edu/toc/jop/current))
 
 These choices are compatible with the submission requirements of a large number of (at least political science) journals.
+
+# PDF Engine
+
+Note that this format uses the pdflatex PDF engine rather than xelatex.
 
 # References
 

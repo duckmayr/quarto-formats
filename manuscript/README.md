@@ -45,10 +45,14 @@ The format has pre-defined the following theorem environments:
 and the following math commands/operators:
 
 ```tex
-\DeclareMathOperator{Var}{Var}
-\DeclareMathOperator{Cov}{Cov}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\E}{\ensuremath{\mathbb{E}}}
 \newcommand{\V}{\ensuremath{\mathbb{V}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
 ```
+
+## PDF Engine
+
+Note that this format uses the pdflatex PDF engine rather than xelatex.

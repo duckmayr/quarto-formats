@@ -8,12 +8,32 @@ $endif$
 %%%%% PREAMBLE %%%%%
 \documentclass[12pt]{article}
 
+%% Math -----
+%% General
+\usepackage{amsmath}
+\usepackage{amssymb}
+%% Theorems
+\let\openbox\relax
+\usepackage{amsthm}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}{Corollary}[proposition]
+\newtheorem{remark}{Remark}[proposition]
+%% Custom (mostly common stats stuff)
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+\newcommand{\V}{\ensuremath{\mathbb{V}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
 %% Formatting -----
 %% Margins & spacing
 \usepackage[margin=1in]{geometry}
 \usepackage{setspace}
 \doublespacing
 %% We want Times New Roman for the main text
+\let\Bbbk\relax
 \usepackage{newtx}
 %% And Helvetica for the section headings
 \usepackage{helvet}
@@ -45,7 +65,6 @@ $endif$
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
-\urlstyle{same} % disable monospaced font for URLs
 $if(verbatim-in-note)$
 \VerbatimFootnotes % allow verbatim text in footnotes
 $endif$
@@ -53,6 +72,7 @@ $endif$
 %% hyperref stuff -----
 \usepackage{xcolor}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
 $if(title-meta)$
@@ -98,25 +118,6 @@ $endif$
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
-
-%% Math -----
-%% General
-\usepackage{amsmath}
-\usepackage{amssymb}
-%% Theorems
-\let\openbox\relax
-\usepackage{amsthm}
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}[proposition]{Lemma}
-\newtheorem{corollary}{Corollary}[proposition]
-\newtheorem{remark}{Remark}[proposition]
-%% Custom (mostly common stats stuff)
-\DeclareMathOperator{Var}{Var}
-\DeclareMathOperator{Cov}{Cov}
-\newcommand{\R}{\ensuremath{\mathbb{R}}}
-\newcommand{\E}{\ensuremath{\mathbb{E}}}
-\newcommand{\V}{\ensuremath{\mathbb{V}}}
-\newcommand{\C}{\ensuremath{\mathbb{C}}}
 
 %% Tables and graphics -----
 %% Basic graphics support
@@ -252,3 +253,4 @@ $if(biblatex)$
 $endif$
 
 \end{document}
+
