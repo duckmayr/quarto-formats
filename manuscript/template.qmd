@@ -1,0 +1,30 @@
+---
+title: Untitled
+author: First Last
+date: last-modified
+anonymized: false # Change this to true if you need to blind it for review
+abstract: "Here's where you'd put your abstract" # optional
+wordcount: "{{wordcountref}}" # or you can calculate it manually, or eliminate
+# bibliography: 
+spaced-notes: false # Should footnotes be double-spaced?
+format:
+    manuscript-pdf: default
+---
+
+# Introduction
+
+This [Quarto](https://quarto.org/) [template](https://quarto.org/docs/extensions/formats.html) generates a PDF that is:
+
+- Double spaced
+- With 12 point text (including in footnotes!)
+- With one-inch margins
+- Using Times New Roman as the main font
+- Using Helvetica for section headings
+- Optionally anonymized
+- Optionally has double-spaced footnotes (as required by, e.g. [The Journal of Politics](https://www.journals.uchicago.edu/toc/jop/current))
+
+These choices are compatible with the submission requirements of a large number of (at least political science) journals.
+
+# References
+
+No particular reference style is suggested or enforced by this template, that's up to you to select based either on personal preference or journal requirements.

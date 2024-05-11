@@ -1,0 +1,12 @@
+title: Manuscript
+author: JB Duck-Mayr
+version: 0.0.1
+quarto-required: ">=1.4.0"
+contributes:
+    formats:
+        pdf:
+            template: ms-template.tex
+        common:
+            filters:
+                - wordcount.lua
+

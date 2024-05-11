@@ -1,0 +1,254 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode$for(hyperrefoptions)$,$hyperrefoptions$$endfor$}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+$if(colorlinks)$
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+$endif$
+
+%%%%% PREAMBLE %%%%%
+\documentclass[12pt]{article}
+
+%% Formatting -----
+%% Margins & spacing
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\doublespacing
+%% We want Times New Roman for the main text
+\usepackage{newtx}
+%% And Helvetica for the section headings
+\usepackage{helvet}
+\usepackage{titlesec}
+\titleformat*{\section}{\sffamily\Large\bfseries}
+\titleformat*{\subsection}{\sffamily\large\bfseries}
+\titleformat*{\subsubsection}{\sffamily\normalsize\bfseries}
+%% Ensure footnotes are 12 pt and at the bottom
+\usepackage[bottom]{footmisc}
+\renewcommand{\footnotesize}{\fontsize{12pt}{12pt}\selectfont}
+%% Double-space footnotes if requested
+$if(spaced-notes)$
+\renewcommand{\footnotelayout}{\doublespacing}
+\setlength{\footnotesep}{\baselineskip}
+$endif$
+%% Use csquotes?
+$if(csquotes)$
+\usepackage{csquotes}
+$endif$
+%% Prevent overfull lines
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[$for(microtypeoptions)$$microtypeoptions$$sep$,$endfor$]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+\urlstyle{same} % disable monospaced font for URLs
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allow verbatim text in footnotes
+$endif$
+
+%% hyperref stuff -----
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+$if(title-meta)$
+  pdftitle={$title-meta$},
+$endif$
+$if(anonymized)$
+$else$
+$if(author-meta)$
+  pdfauthor={$author-meta$},
+$endif$
+$endif$
+$if(lang)$
+  pdflang={$lang$},
+$endif$
+$if(subject)$
+  pdfsubject={$subject$},
+$endif$
+$if(keywords)$
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+$endif$
+$if(colorlinks)$
+  colorlinks=true,
+  linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
+  filecolor={$if(filecolor)$$filecolor$$else$Maroon$endif$},
+  citecolor={$if(citecolor)$$citecolor$$else$Blue$endif$},
+  urlcolor={$if(urlcolor)$$urlcolor$$else$Blue$endif$},
+$else$
+  hidelinks,
+$endif$
+  pdfcreator={LaTeX via pandoc}
+}
+
+%% Listings -----
+$if(listings)$
+\usepackage{listings}
+\newcommand{\passthrough}[1]{#1}
+\lstset{defaultdialect=[5.3]Lua}
+\lstset{defaultdialect=[x86masm]Assembler}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+%% Math -----
+%% General
+\usepackage{amsmath}
+\usepackage{amssymb}
+%% Theorems
+\let\openbox\relax
+\usepackage{amsthm}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}{Corollary}[proposition]
+\newtheorem{remark}{Remark}[proposition]
+%% Custom (mostly common stats stuff)
+\DeclareMathOperator{Var}{Var}
+\DeclareMathOperator{Cov}{Cov}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\E}{\ensuremath{\mathbb{E}}}
+\newcommand{\V}{\ensuremath{\mathbb{V}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+%% Tables and graphics -----
+%% Basic graphics support
+\usepackage{graphicx}
+%% pandoc-specific(?) parameters defined
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+
+%% Title page -----
+\usepackage{titling}
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(subtitle)$
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{$subtitle$}
+$endif$
+$if(anonymized)$
+\preauthor{}
+\postauthor{}
+$else$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$else$
+\predate{}
+\postdate{}
+$endif$
+
+%% References -----
+%% natbib
+$if(natbib)$
+\usepackage[$natbiboptions$]{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+$endif$
+%% biblatex
+$if(biblatex)$
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
+$if(nocite-ids)$
+\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
+$endif$
+%% CSL
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+$endif$
+
+%% User-supplied header includes -----
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+%%%%% ACTUAL DOCUMENT %%%%%
+\begin{document}
+
+%% Title page
+\begin{titlingpage}
+\maketitle
+$if(abstract)$
+\vspace{\baselineskip}
+\begin{center}
+\textbf{\sffamily\large Abstract}
+\end{center}
+\begin{quote}
+$abstract$
+\end{quote}
+$endif$
+$if(wordcount)$
+\vspace{\baselineskip}
+\begin{center}
+Word count: $wordcount$
+\end{center}
+$endif$
+\end{titlingpage}
+
+%% Main body
+$body$
+
+%% References
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(has-chapters)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+$endif$
+
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+
+\end{document}
