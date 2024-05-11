@@ -56,3 +56,9 @@ and the following math commands/operators:
 ## PDF Engine
 
 Note that this format uses the pdflatex PDF engine rather than xelatex.
+
+## Word Count
+
+Note that there is an included automatic word count tool, but for now it seems to be a bit of an overestimate.
+An alternative is to replace `"{{wordcountref}}"` with your own word count.
+One relatively easy and seemingly accurate tool to count the words in a Quarto document is the [wordcount add-in for RStudio](https://github.com/benmarwick/wordcountaddin).
